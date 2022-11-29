@@ -1,5 +1,6 @@
 import app from './app';
 
-app.listen(3000, () => {
-  console.log('Ouvindo a porta 3000');
+app.listen(8800, () => {
+  // eslint-disable-next-line no-console
+  console.log('Ouvindo a porta 8800');
 });

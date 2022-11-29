@@ -46,7 +46,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
 
   const handleDelete = async (id) => {
     await axios
-      .delete("http://localhost:8800/" + id)
+      .delete("http://localhost:8800/clientes/" + id)
       .then(({ data }) => {
         const newArray = users.filter((user) => user.id !== id);
 
@@ -56,6 +56,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
       .catch(({ data }) => toast.error(data));
 
     setOnEdit(null);
+    return toast.info("Cliente excluído do sistema!");
   };
 
   return (
@@ -81,7 +82,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
               <FaEdit onClick={() => handleEdit(item)} />
             </Td>
             <Td alignCenter width="5%">
-              <FaTrash onClick={() => handleDelete(item.id)} />
+              <FaTrash onClick={() => handleDelete(item._id)} />
             </Td>
           </Tr>
         ))}

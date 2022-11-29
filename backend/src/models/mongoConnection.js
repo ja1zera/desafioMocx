@@ -10,6 +10,7 @@ const connection = () => MongoClient
   })
   .then((conn) => conn.db(DB_NAME))
   .catch((err) => {
+    // eslint-disable-next-line no-console
     console.error(err);
     process.exit(1);
   });

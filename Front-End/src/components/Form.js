@@ -44,9 +44,10 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
 
   useEffect(() => {
     if (onEdit) {
-      const user = ref.current;
+      console.log({onEdit});
 
-      user.cliente.value = onEdit.cliente;
+      const user = ref.current;
+      user.nome.value = onEdit.nome;
       user.cpf.value = onEdit.cpf;
       user.dataDeNascimento.value = onEdit.dataDeNascimento;
     }
@@ -55,7 +56,12 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const nome = e.target[0].value
+    const cpf = e.target[1].value
+    const dataDeNascimento = e.target[2].value
     const user = ref.current;
+
+    console.log({nome, cpf, dataDeNascimento});
 
     if (
       !user.cpf.value
@@ -63,29 +69,35 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
       return toast.warn("Preencha o campo CPF!");
     }
 
-    if (onEdit) {
-      await axios
-        .put("http://localhost:8800/" + onEdit.id, {
-          cliente: user.cliente.value,
-          cpf: user.cpf.value,
-          dataDeNascimento: user.dataDeNascimento.value,
-        })
-        .then(({ data }) => toast.success(data))
-        .catch(({ data }) => toast.error(data));
-    } else {
-      await axios
-        .post("http://localhost:8800", {
-          cliente: user.cliente.value,
-          cpf: user.cpf.value,
-          dataDeNascimento: user.dataDeNascimento.value,
-        })
-        .then(({ data }) => toast.success(data))
-        .catch(({ data }) => toast.error(data));
+    if (
+      user.cpf.value.length !== 11
+    ) {
+      return toast.warn("CPF inválido!");
     }
 
-    user.cliente.value = "";
-    user.cpf.value = "";
-    user.dataDeNascimento.value = "";
+    if (onEdit) {
+      console.log({onEdit});
+      await axios
+        .put("http://localhost:8800/clientes/" + onEdit._id, {
+          nome,
+          cpf,
+          dataDeNascimento
+        })
+        .then(({ data }) => toast.success(data))
+        .catch(({ data }) => toast.error(data));
+        toast.success("Dados atualizados!");
+    } else {
+      console.log(user);
+      await axios
+        .post("http://localhost:8800/clientes", {
+          nome,
+          cpf,
+          dataDeNascimento
+        })
+        .then(({ data }) => toast.success(data))
+        .catch(({ data }) => toast.error(data));
+        return toast.success("Cliente cadastrado com sucesso!");
+    }
 
     setOnEdit(null);
     getUsers();
