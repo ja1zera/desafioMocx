@@ -10,12 +10,8 @@ const todos = async () => {
 const criar = async ({ nome, cpf, dataDeNascimento }) => {
   const doc = await clienteExists({ cpf });
 
-  if (doc) {
-    return { message: 'CPF já cadastrado!' };
-  }
-  if (cpf.length !== 11) {
-    return { message: 'O campo CPF deve conter 11 dígitos!' };
-  }
+  if (doc) return { message: 'CPF já cadastrado!' };
+  if (cpf.length !== 11) return { message: 'O campo CPF deve conter 11 dígitos!' };
 
   const cliente = await newCliente({ nome, cpf, dataDeNascimento });
   return cliente;
