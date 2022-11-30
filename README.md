@@ -1,4 +1,12 @@
-## Como executar o projeto:
+# Tela de Cadastro de Clientes
+
+Essa aplicação permite que o usuário cadastre clientes 
+e os armazene em um banco de dados, podendo consultar 
+esses clientes posteriormente. Além de poder atualizar
+os cadastros e excluir registros quando necessário.
+
+
+# Como executar o projeto:
 
 - Clonar projeto
 
