@@ -6,22 +6,27 @@
 git clone https://github.com/ja1zera/desafioMocx.git
 ```
 
+- Rodar o comando abaixo para entrar na pasta do projeto:
+
+``` 
+cd desafioMocx
+```
+
 - Mudar para a Master de projeto
 
 ```
-git checkout origin/master
+git checkout master
 ```
 
-- Abrir o front e o backend em um editor de texto (https://code.visualstudio.com/) (recomendo o VSCODE).
+- Abrir o front e o backend em um editor de texto  (Recomendo [Visual Studio CODE](<https://code.visualstudio.com/>))
 
-- Rodar o seguinte comando no cmd:
+- Rodar o seguinte comando no terminal (cmd) dos dois editores:
 
 ```
 npm install
 ```
 
-Após terminadas as instalações, rodar no front e no 
-backend o comando:
+Após terminadas as instalações, rodar em ambos os terminais:
 
 ```
 npm start
